@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="org.credil.helloworldservice"
-      android:versionCode="1"
-      android:versionName="1.0">
+      package="org.credil.helloworldservice">
 
     <!-- Define a permission for people to access the native service this should normally
     happen in a different place. all Binder interface are to be considered public so you always
