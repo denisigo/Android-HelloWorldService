@@ -21,7 +21,7 @@ public class HelloWorldService extends Service {
          * Assume the service is already as in this setup we are running a native service for
          * some good reason: We are running the service from init.rc
          *
-         * The following code works but it most probably is conceptualy wrong.
+         * The following code works but it most probably is conceptually wrong.
          *
          * The mBinder returned "lives" in a different process.
          **/

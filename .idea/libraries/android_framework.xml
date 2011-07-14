@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="android_framework">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/syslib/framework_intermediates_classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
