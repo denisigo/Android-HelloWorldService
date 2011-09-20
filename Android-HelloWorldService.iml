@@ -30,7 +30,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="android_framework" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="android_framework" level="project" />
   </component>
 </module>
 
