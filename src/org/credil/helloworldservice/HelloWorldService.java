@@ -2,6 +2,7 @@ package org.credil.helloworldservice;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.Binder;
 import android.os.IBinder;
 import android.os.ServiceManager;    //Android internal API
 import android.util.Log;
@@ -16,7 +17,16 @@ public class HelloWorldService extends Service {
     private final static String LOG_TAG = HelloWorldService.class.getSimpleName();
     private IBinder mIBinder;
 
+
+    /**
+     *  Initialize the native library given a binder object.
+     **/
+    private native void nativeInit(Binder binder);
+
     public IBinder onBind(Intent intent) {
+
+        System.loadLibrary("helloworldservice");
+        nativeInit(new Binder());
         /**
          * Assume the service is already as in this setup we are running a native service for
          * some good reason: We are running the service from init.rc

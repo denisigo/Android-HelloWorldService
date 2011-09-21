@@ -38,20 +38,16 @@ namespace android {
  **/
 class HelloWorldService : public BnInterface<IHelloWorld>
 {
-public:
-    virtual                 ~HelloWorldService(){};
+	public:
+		HelloWorldService(){};		
+	virtual ~HelloWorldService(){};
+	void hellothere(const char *str);
 
-    static  void                instantiate();
+	status_t onTransact(uint32_t code,
+			    const android::Parcel &data,
+			    Parcel *reply,
+			    uint32_t flags);
 
-    void hellothere(const char *str);
-
-    status_t onTransact(uint32_t code,
-                                 const android::Parcel &data,
-                                Parcel *reply,
-                                 uint32_t flags);
-private:
-    /* Private constructor to force the usage the  instantiate method */
-    HelloWorldService(){};
 };
 
 }
