@@ -92,6 +92,10 @@ jint JNI_OnLoad(JavaVM* vm, void* reserved){
 }
 
 jobject nativeInit(JNIEnv * env , jobject object){
+    //mostly copyed from 
+    //extern jobject javaObjectForIBinder(JNIEnv* env, const sp<IBinder>& val);
+    //The header for this is currently in core/jni/android_util_Binder.h.
+
 	LOGI("%s What do do with this binder",__FUNCTION__);
 	jclass cls = env->FindClass("android/os/Binder");
 	if(!cls) {
@@ -116,8 +120,10 @@ jobject nativeInit(JNIEnv * env , jobject object){
 		return NULL;
 	}
 
-	//trying to replace the binder field of the method
+	//trying to replace the binder field of the method but this currently crashed the system
 	android::IBinder * ref = new android::HelloWorldService();
 	env->SetIntField(obj,field,(int)ref);
+    //TODO to we need to start/join the threadpool or does this only work if we first fork
+	android::ProcessState::self()->startThreadPool();
 	return obj;
 }
