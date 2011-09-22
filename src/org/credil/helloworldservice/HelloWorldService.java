@@ -21,21 +21,12 @@ public class HelloWorldService extends Service {
     /**
      *  Initialize the native library given a binder object.
      **/
-    private native void nativeInit(Binder binder);
+    private native Binder nativeInit();
 
     public IBinder onBind(Intent intent) {
 
         System.loadLibrary("helloworldservice");
-        nativeInit(new Binder());
-        /**
-         * Assume the service is already as in this setup we are running a native service for
-         * some good reason: We are running the service from init.rc
-         *
-         * The following code works but it most probably is conceptually wrong.
-         *
-         * The mBinder returned "lives" in a different process.
-         **/
-        mIBinder = ServiceManager.getService("org.credil.helloworldservice.IHelloWorld");
+        mIBinder = nativeInit();
         if (mIBinder == null) {
             Log.e(LOG_TAG, "Hello service not found is/system/bin/helloworldservice running?");
             return null;
