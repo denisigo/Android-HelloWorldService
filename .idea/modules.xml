@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Android-HelloWorldService.iml" filepath="$PROJECT_DIR$/Android-HelloWorldService.iml" />
+      <module fileurl="file://$USER_HOME$/projects/atlassian-cli-2.0.0/arch_con/arch_con.iml" filepath="$USER_HOME$/projects/atlassian-cli-2.0.0/arch_con/arch_con.iml" />
+      <module fileurl="file://$USER_HOME$/projects/gomo.wiki/gomo.wiki.iml" filepath="$USER_HOME$/projects/gomo.wiki/gomo.wiki.iml" />
+      <module fileurl="file://$USER_HOME$/projects/atlassian-cli-2.0.0/test/sysarch.iml" filepath="$USER_HOME$/projects/atlassian-cli-2.0.0/test/sysarch.iml" />
+    </modules>
+  </component>
+</project>
+
