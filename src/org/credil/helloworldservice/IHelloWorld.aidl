@@ -1,5 +1,7 @@
 package org.credil.helloworldservice;
 
+import org.credil.helloworldservice.IHelloWorldListener;
+
 /**
  *  AIDL file created to match the interface defined in IHelloWorld.h
  *
@@ -10,4 +12,6 @@ package org.credil.helloworldservice;
  **/
 interface IHelloWorld {
         int hellothere(String msg);
+        int hellohere(String msg);
+        int setListener(IHelloWorldListener listener);
 }

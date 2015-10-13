@@ -19,7 +19,7 @@
 
 int main(int argc, char *argv[])
 {
-	LOGI("Hello client is now starting");
+	ALOGI("Hello client is now starting");
 
         android::sp<android::IServiceManager> sm = android::defaultServiceManager();
         android::sp<android::IBinder> binder;
@@ -29,11 +29,11 @@ int main(int argc, char *argv[])
                 binder = sm->getService(android::String16(HELLOWORLD_NAME));
                 if (binder != 0)
                         break;
-                LOGW("HelloWorld not published, waiting...");
+                ALOGW("HelloWorld not published, waiting...");
                 usleep(500000); // 0.5 s
         } while(true);
 
-        //LOGI("sm: %u binder: %u", sm, binder);
+        //ALOGI("sm: %u binder: %u", sm, binder);
 
         //if (sDeathNotifier == NULL) {
         //    sDeathNotifier = new DeathNotifier();
@@ -41,12 +41,12 @@ int main(int argc, char *argv[])
         //binder->linkToDeath(sDeathNotifier);
         //sMediaPlayerService = interface_cast<IMediaPlayerService>(binder);
 
-	LOGI("Hello client is now trying");
+	ALOGI("Hello client is now trying");
 
         shw = android::interface_cast<android::IHelloWorld>(binder);
         shw->hellothere("fun");
 	
-	LOGI("Hello client is now exiting");
+	ALOGI("Hello client is now exiting");
 
 	return(0);
 }

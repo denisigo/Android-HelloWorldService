@@ -14,6 +14,7 @@
 #include <utils/String16.h>
 #include <utils/String8.h>
 #include "helloworldservice.h"
+#include "IHelloWorldListener.h"
 #include "utils/Log.h"
 
 #include <unistd.h>
@@ -33,8 +34,19 @@ void HelloWorldService::instantiate() {
 }
 
 void HelloWorldService::hellothere(const char *str){
-    LOGE("hello: %s\n", str);
+    ALOGE("hello: %s\n", str);
     printf("hello: %s\n", str);
+}
+
+void HelloWorldService::hellohere(const char *str){
+    ALOGE("hello: %s\n", str);
+    printf("hello HERE: %s\n", str);
+    mListener->onStatusChanged(42);
+}
+
+void HelloWorldService::setListener(
+        const sp<IHelloWorldListener>& listener) {
+    mListener = listener;
 }
 
 /**
@@ -46,7 +58,7 @@ status_t HelloWorldService::onTransact(uint32_t code,
                                                 Parcel *reply,
                                                 uint32_t flags)
 {
-        LOGE("OnTransact(%u,%u)", code, flags);
+        ALOGE("OnTransact(%u,%u)", code, flags);
         CHECK_INTERFACE(IHelloWorld, data, reply);
         switch(code) {
         case HW_HELLOTHERE: {
@@ -65,6 +77,31 @@ status_t HelloWorldService::onTransact(uint32_t code,
                 hellothere(String8(str).string());
                 return NO_ERROR;
         } break;
+        case HW_HELLOHERE: {
+                        /**
+                         * Checking permissions is always a good idea.
+                         *
+                         * Note that the native client will also be granted these permissions in two cases
+                         * 1) you run the client code as root or system user.
+                         * 2) you run the client code as user who was granted this permission.
+                         * @see http://github.com/keesj/gomo/wiki/AndroidSecurity for more information
+                         **/
+                        if (checkCallingPermission(String16("org.credil.helloworldservice.permissions.CALL_HELLOTHERE")) == false){
+                            return   PERMISSION_DENIED;
+                        }
+                        String16 str = data.readString16();
+                        hellohere(String8(str).string());
+                        return NO_ERROR;
+                } break;
+        case SET_LISTENER: {
+                    printf("CONNECT");
+                    //CHECK_INTERFACE(IHelloWorldService, data, reply);
+                    sp<IHelloWorldListener> listener =
+                            interface_cast<IHelloWorldListener>(data.readStrongBinder());
+                    setListener(listener);
+                    reply->writeNoException();
+                    return NO_ERROR;
+                } break;
         default:
                 return BBinder::onTransact(code, data, reply, flags);
         }

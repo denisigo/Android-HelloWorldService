@@ -15,6 +15,7 @@
 
 namespace android {
 
+class IHelloWorldListener;
 
 /*
  * The native class implementation extends BnInterface
@@ -44,6 +45,8 @@ public:
     static  void                instantiate();
 
     void hellothere(const char *str);
+    void hellohere(const char *str);
+    void setListener(const sp<IHelloWorldListener>& listener);
 
     status_t onTransact(uint32_t code,
                                  const android::Parcel &data,
@@ -52,6 +55,8 @@ public:
 private:
     /* Private constructor to force the usage the  instantiate method */
     HelloWorldService(){};
+
+    sp<IHelloWorldListener>               mListener;
 };
 
 }

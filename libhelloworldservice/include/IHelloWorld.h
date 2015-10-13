@@ -15,6 +15,8 @@
 
 namespace android {
 
+class IHelloWorldListener;
+
 /**
  *  Define the interface we want to be remotable. This interface
  *  can be used to create booth local and remote implementations.
@@ -41,7 +43,9 @@ protected:
      * are delivered using parcels.
      **/
     enum {
-            HW_HELLOTHERE =  IBinder::FIRST_CALL_TRANSACTION
+            HW_HELLOTHERE =  IBinder::FIRST_CALL_TRANSACTION,
+            HW_HELLOHERE,
+            SET_LISTENER
     };
 
 public:
@@ -71,6 +75,10 @@ public:
          * binder calls to the methods using the enum.
          **/
         virtual void hellothere(const char *str) = 0;
+
+        virtual void hellohere(const char *str) = 0;
+
+        virtual void setListener(const sp<IHelloWorldListener>& listener) = 0;
 };
 
 }

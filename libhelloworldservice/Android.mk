@@ -3,7 +3,8 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := src/helloworldservice.cpp 
-LOCAL_SRC_FILES += src/helloworldclient.cpp 
+LOCAL_SRC_FILES += src/helloworldclient.cpp
+LOCAL_SRC_FILES += src/IHelloWorldListener.cpp
 
 LOCAL_C_INCLUDES :=         \
     $(LOCAL_PATH)/include

@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 {
 	android::HelloWorldService::instantiate();
 	android::ProcessState::self()->startThreadPool();
-	LOGI("Hello Service is now ready");
+	ALOGI("Hello Service is now ready");
 
 	android::IPCThreadState::self()->joinThreadPool();
 	return(0);
